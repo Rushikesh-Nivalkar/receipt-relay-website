@@ -1,0 +1,339 @@
+{
+ "start": "2026-11-21T07:00:44.406Z",
+ "round": 2,
+ "idle": 0,
+ "errors": 0,
+ "status": "pass",
+ "history": [
+  {
+   "at": "2026-11-21T08:31:10.629Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 2,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-21T08:35:18.763Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 1,
+   "round": 2,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-21T08:39:26.515Z",
+   "mode": "manual",
+   "status": "pass",
+   "fails": 0,
+   "round": 2,
+   "reused": false,
+   "stopHookActive": false
+  }
+ ],
+ "max": 3,
+ "marker": {
+  "page": "dist/index.html",
+  "dir": "\\\\10.10.10.10\\Ruwini-Shared-Directory\\Rushi-NAS-Directory\\Business Folder\\master-root\\projects\\receipt-relay-website",
+  "kind": "software",
+  "start": "2026-11-21T07:00:44.406Z",
+  "by": "start.mjs",
+  "url": null,
+  "root": "dist",
+  "category": "receipt rewards app",
+  "primary": "Download for Android"
+ },
+ "manual": true,
+ "roundKey": "3e258307eda19971:7d704306",
+ "roundFree": false,
+ "idleFree": false,
+ "blockKey": null,
+ "fp": "898f5852964fadca",
+ "page": "dist/index.html",
+ "found": {
+  "fails": [
+   {
+    "check": "cut-text",
+    "where": "div.dg-nodes > div.dg-node.dg-node--tile:nth-of-type(1) > span.dg-cap > span.dg-cap__l \"Receipt\"",
+    "msg": "runs past the edge of its box div.stage > div.dg > div.dg-nodes > div.dg-node.dg-node--tile:nth-of-type(1) (and 4 more like it: \"Shping\", \"ShopBack\", \"ReceiptJar\", \"Claims tracked\")",
+    "fix": "give the text room: no overflow clipping a line, no line past its box",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "cut-text"
+    ],
+    "wheres": [
+     "div.dg-nodes > div.dg-node.dg-node--tile:nth-of-type(1) > span.dg-cap > span.dg-cap__l \"Receipt\""
+    ]
+   }
+  ],
+  "warns": [
+   {
+    "check": "cut-text",
+    "where": "ul.ui-notify__list > li.ui-note:nth-of-type(3) > span.ui-note__text > span.ui-note__body \"Bunnings, 12 Nov\"",
+    "msg": "cut 14px at the bottom by the overflow of div.group > div.grid > article.card.card--row:nth-of-type(1) > div.panel: a fragment run out through its panel's edge (inside a held section or scroll scene, whose motion --quick does not check)",
+    "fix": "give the text room: no overflow clipping a line, no line past its box",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cta",
+    "where": "section#claims \"Claim tracker for every receipt. Deadlin\"",
+    "msg": "a section over 1.5 screens long with no link or button in it",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-headings",
+    "where": "div.group > div.grid > article.card.card--row:nth-of-type(1) > h3 \"Sends deadline reminders\"",
+    "msg": "\"Sends deadline reminders\" names no product, part, place or section (the one brand line a page may have)",
+    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "text-contrast",
+    "where": "div.ui-win__main > ul.ui-win__rows > li.ui-win__row:nth-of-type(1) > span.ui-win__st \"Claimed\"",
+    "msg": "17 lines of text in drawn mocks read under 4.5:1 (8 colour pairs), the worst \"Claimed\" in #4c575f on #a6b3bc at 3.45:1",
+    "fix": "lift the mocks' muted text (labels, meta, initials) to 4.5:1 on their own panel, or set it larger",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#rules / section#claims",
+    "msg": "393px between these sections, +31% against the median 300px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#claims / section#faq",
+    "msg": "188px between these sections, -37% against the median 300px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.grid.grid--top > div.span-5.stack-4 > p:nth-of-type(2) > a.link \"Email us a question\"",
+    "msg": "\"Email us a question\" goes to #contact, in the footer",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.wrap.nav__bar > nav.nav__links > div.nav__item:nth-of-type(1) > a.nav__link \"Product\"",
+    "msg": "\"Product\" opens a section headed \"Every receipt and its claims in one list\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(2) > a:nth-of-type(1) \"Guided uploadHands the file to each app\"",
+    "msg": "\"Guided uploadHands the file to each app\" opens a section headed \"Claim tracker for every receipt. Deadlines, duplic\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.nav__item:nth-of-type(1) > div.nav__menu > div.wrap.grid > a.menu-card.span-3 \"How we make money One ad after you submi\"",
+    "msg": "\"How we make money One ad after you submi\" opens a section headed \"Questions\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "label-centre",
+    "where": "header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"Download for Android\"",
+    "msg": "its label sits 18px off-centre (25px of room at the left, 43px at the right) (and 1 more like it: \"Download for Android\")",
+    "fix": "centre the label in its button, or fill the empty side with an icon",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "stranded-action",
+    "where": "div.wrap > div.hero-text.grid > div.span-3.start-10 > a.btn.btn--primary \"Download for Android\"",
+    "msg": "stands 425px across from the nearest text of its block (\"img: logo-glass-icon.svg\")",
+    "fix": "put the button under or beside the text it belongs to",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "fade-cut",
+    "where": "ul.ui-notify__list > li.ui-note:nth-of-type(3) > span.ui-note__text > span.ui-note__title \"2 days left for Shping 1d\"",
+    "msg": "2 lines of div.ui.ui-notify fade out under its edge (\"2 days left for Shping\", \"1d\"): drawn at a fraction of #1c1c1c on #fffdff, half-erased (inside a held section or scroll scene, whose motion --quick does not check)",
+    "fix": "fit the mock's rows inside its panel (fewer rows, a taller panel), or end the fade below the last whole row: no row half-erased",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-length",
+    "where": "section#faq \"Questions\"",
+    "msg": "1 section over 90 words a screen outside the UI mocks (\"Questions\" 137); 53 words a screen across the page (372 words in 7 screens): a tech page says it in about 80 or fewer",
+    "fix": "cut every section to its heading, one line and the product UI: the UI says the rest; no second paragraph, no list of feature sentences",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-current",
+    "where": "header.nav",
+    "msg": "the nav stays on screen with 4 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)",
+    "fix": "mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "visual-caption",
+    "where": "div.ui.ui-panel > div.ui-stat__chart > div.ui-stat__axis > span:nth-of-type(1) \"1 Nov\"",
+    "msg": "a muted 13px line of 1 row sits 8px under the drawing (svg): it reads as a caption: \"1 Nov\"; no caption or description under any image, render or visual (house rule)",
+    "fix": "take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "action-repeat",
+    "where": "header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"download for android\"",
+    "msg": "\"download for android\" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it",
+    "fix": "show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav",
+    "where": "header.nav > div.wrap.nav__bar > button.nav__toggle",
+    "msg": "the nav is lopsided: its last item ends 13px inside the content's edge (366px), while its first starts on the other edge",
+    "fix": "start the nav's first item and end its last on the content's two edges",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cut-text",
+    "where": "ul.ui-notify__list > li.ui-note:nth-of-type(1) > span.ui-note__text > span.ui-note__title \"4 days left for ShopBack\"",
+    "msg": "cut 5px at the top by the overflow of div.group > div.grid > article.card.card--row:nth-of-type(1) > div.panel: a fragment run out through its panel's edge (inside a held section or scroll scene, whose motion --quick does not check)",
+    "fix": "give the text room: no overflow clipping a line, no line past its box",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "text-contrast",
+    "where": "div.ui.ui-panel > ul.ui-search__list > li.ui-search__row:nth-of-type(2) > span.ui-search__t \"Coles, 2 Nov, $18.60\"",
+    "msg": "2 lines of text in drawn mocks read under 4.5:1 (1 colour pair), the worst \"Coles, 2 Nov, $18.60\" in #4e4c4d on #b2bdc5 at 4.45:1",
+    "fix": "lift the mocks' muted text (labels, meta, initials) to 4.5:1 on their own panel, or set it larger",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#top > section.hero.hero--triptych / section#app",
+    "msg": "118px between these sections, -51% against the median 243px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "fade-cut",
+    "where": "li.ui-note:nth-of-type(3) > span.ui-note__text > span.ui-note__title > time \"1d\"",
+    "msg": "a line of div.ui.ui-notify fades out under its edge (\"1d\"): drawn at a fraction of #5d646b on #fffdff, half-erased (inside a held section or scroll scene, whose motion --quick does not check)",
+    "fix": "fit the mock's rows inside its panel (fewer rows, a taller panel), or end the fade below the last whole row: no row half-erased",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "fold-cut",
+    "where": "div.wrap > div.hero-text.grid > div.span-3.start-10 > a.btn.btn--primary \"Download for Android\"",
+    "msg": "the hero's button \"Download for Android\" is cut by the bottom of the first screen (14px of its 56px below the fold)",
+    "fix": "size the hero so the heading ends above the fold, or starts below it",
+    "widths": [
+     320
+    ],
+    "from": "consistency"
+   }
+  ],
+  "crashed": [],
+  "seconds": {
+   "consistency": 126,
+   "layout": 4
+  }
+ },
+ "open": [],
+ "waived": [
+  {
+   "check": "cut-text",
+   "where": "div.dg-nodes > div.dg-node.dg-node--tile:nth-of-type(1) > span.dg-cap > span.dg-cap__l \"Receipt\"",
+   "msg": "runs past the edge of its box div.stage > div.dg > div.dg-nodes > div.dg-node.dg-node--tile:nth-of-type(1) (and 4 more like it: \"Shping\", \"ShopBack\", \"ReceiptJar\", \"Claims tracked\")",
+   "fix": "give the text room: no overflow clipping a line, no line past its box",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "cut-text"
+   ],
+   "wheres": [
+    "div.dg-nodes > div.dg-node.dg-node--tile:nth-of-type(1) > span.dg-cap > span.dg-cap__l \"Receipt\""
+   ],
+   "reason": "Diagram kit sets each caption under its tile by design (diagram.css .dg-cap top: 100% + 10px); at 390 every label reads whole in the crop, nothing is clipped since the frame was given 880px."
+  }
+ ],
+ "warnCount": 23,
+ "at": "2026-11-21T08:39:26.516Z"
+}

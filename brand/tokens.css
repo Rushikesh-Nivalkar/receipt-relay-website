@@ -1,0 +1,14 @@
+:root {
+  --p-bg: #a6b3bc; --p-surface: #b2bdc5; --p-ink: #1c1c1c; --p-muted: #38424a;
+  --p-accent: #2c3620; --p-accent-ink: #e3e2da; --p-action: #2c3620; --p-action-ink: #e3e2da;
+  --p-inv-bg: #2c3620; --p-inv-surface: #39422d; --p-inv-ink: #ffffff; --p-inv-muted: #a8ada3;
+  --p-inv-accent: #ffffff; --p-inv-accent-ink: #2c3620; --p-inv-action: #ffffff; --p-inv-action-ink: #2c3620;
+  --font-display: "Instrument Sans", system-ui, sans-serif;
+  --font-text: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 500;
+  --display-tracking: -0.028em;
+  --display-tracking-xl: -0.036em;
+  --display-stretch: 96%;
+  --ly-scale: 1.04;
+}
