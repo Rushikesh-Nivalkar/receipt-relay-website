@@ -1,0 +1,22 @@
+/* Dealt tokens copied from brand/tokens.css, unchanged */
+:root {
+  --p-bg: #a6b3bc; --p-surface: #b2bdc5; --p-ink: #1c1c1c; --p-muted: #38424a;
+  --p-accent: #2c3620; --p-accent-ink: #e3e2da;
+  --font-text: Roboto, system-ui, sans-serif;
+  --font-mono: "Roboto Mono", ui-monospace, monospace;
+  --display-weight: 500; --display-tracking: -0.028em; --display-stretch: 96%;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: var(--w); height: var(--h); overflow: hidden; }
+body { background: var(--p-bg); color: var(--p-ink); font-family: var(--font-text); -webkit-font-smoothing: antialiased; }
+.h { font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-stretch: var(--display-stretch); line-height: 1.02; }
+.sub { color: var(--p-muted); line-height: 1.35; }
+.olive { background: var(--p-accent); color: var(--p-accent-ink); }
+.olive .sub { color: var(--p-accent-ink); opacity: .86; }
+.card { background: #fbfbf9; border-radius: 22px; box-shadow: 0 1px 2px rgb(0 0 0 / .1), 0 22px 48px -22px rgb(0 0 0 / .4); padding: 26px 28px; display: grid; gap: 14px; }
+.card .lbl { color: var(--p-muted); font-size: 17px; }
+.card .ln { display: flex; justify-content: space-between; gap: 18px; padding-top: 13px; border-top: 1px solid rgb(28 28 28 / .12); font-size: 21px; }
+.card .ln em { font-style: normal; font-family: var(--font-mono); font-weight: 500; color: var(--p-accent); }
+.card .ln em.wait { color: var(--p-muted); }
+.legal { font-size: 13px; color: var(--p-muted); }
+.olive .legal { color: var(--p-accent-ink); opacity: .8; }

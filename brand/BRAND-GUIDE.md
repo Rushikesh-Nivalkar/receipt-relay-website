@@ -63,9 +63,9 @@ Contrast: ink on slate is about 8:1, and pale on olive about 9.8:1 (both AAA).
 | Use | Face | Weight |
 |---|---|---|
 | Wordmark (outlined to paths) | Instrument Sans, width 96% | 600 in the glass tier, 500 in the flat tier; tracking −2.8% |
-| Headings | Instrument Sans | 400–500 |
-| Body | Instrument Sans | 400; 500 for buttons and labels |
-| Amounts, dates, days left | DM Mono | 400 / 500 |
+| Headings | System font (SF Pro on Apple, Roboto on Android, Segoe UI on Windows) | 400–500 |
+| Body | System font | 400; 500 for buttons and labels |
+| Amounts, dates, days left | System monospace (SF Mono, Roboto Mono or Android monospace, Consolas) | 400 / 500 |
 
 Use sentence case everywhere. The brand name is always "ReceiptRelay". Both faces are under the SIL Open Font License; the licence is in `fonts/`.
 
@@ -79,7 +79,7 @@ Use sentence case everywhere. The brand name is always "ReceiptRelay". Both face
 
 - Use the glass tier wherever the brand is the hero; use the flat tier everywhere small or single-colour.
 - On the website, use the palette's flat fields: slate, sage and blush as soft blocks, one per chapter, with deep olive for the close.
-- Use DM Mono for every number a shopper cares about.
+- Use the system monospace for every number a shopper cares about.
 
 ## Don't
 
@@ -94,3 +94,5 @@ Use sentence case everywhere. The brand name is always "ReceiptRelay". Both face
 
 - Olive `#2C3620` is close in hue to RemAura's moss `#4A5240`. This was the user's pick (#20), and the brands still read differently: ReceiptRelay leads with slate, RemAura with moss and cream.
 - The flat hub can read as a person glyph. The glass tier reduces this. Satellites always stay equal in size and smaller than the core.
+
+> **Font change, 2026-11-23 (user decision).** UI text uses the device's system font (SF Pro on iPhone and Mac, Roboto on Android, Segoe UI on Windows), and every number uses the system monospace font (SF Mono, Roboto Mono or the Android monospace, Consolas). Source: ui-ux-pro-max "System (SF Pro / Roboto)". SF Pro cannot be bundled or hosted (Apple licence: Apple platforms only), so nothing is shipped. The logo wordmark stays outlined Instrument Sans. This is the user's override of taste-skill's no-system-look rule, recorded in `.claude/rules/design-stack.md`.

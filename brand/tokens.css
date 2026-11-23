@@ -3,12 +3,15 @@
   --p-accent: #2c3620; --p-accent-ink: #e3e2da; --p-action: #2c3620; --p-action-ink: #e3e2da;
   --p-inv-bg: #2c3620; --p-inv-surface: #39422d; --p-inv-ink: #ffffff; --p-inv-muted: #a8ada3;
   --p-inv-accent: #ffffff; --p-inv-accent-ink: #2c3620; --p-inv-action: #ffffff; --p-inv-action-ink: #2c3620;
-  --font-display: "Instrument Sans", system-ui, sans-serif;
-  --font-text: "Instrument Sans", system-ui, sans-serif;
-  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-display: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-text: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Roboto Mono", "Liberation Mono", monospace;
   --display-weight: 500;
   --display-tracking: -0.028em;
   --display-tracking-xl: -0.036em;
-  --display-stretch: 96%;
+  --display-stretch: 100%;
   --ly-scale: 1.04;
 }
+
+/* 2026-11-23 user decision: UI text in the system font (SF Pro on Apple, Roboto on Android, Segoe UI on Windows),
+   numbers in the system monospace. The logo wordmark stays outlined Instrument Sans. */

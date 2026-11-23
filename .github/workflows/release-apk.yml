@@ -1,0 +1,99 @@
+# DRAFT — NOT ACTIVE until the ReceiptRelay Android app exists and is signed for release.
+#
+# The app source lives in master-root (not in this repo), so this workflow does NOT build the APK.
+# Flow (see projects/receipt-relay/docs/DEVOPS.md in master-root):
+#   1. Build + sign the APK locally in D:\dev\receipt-relay.
+#   2. Create a DRAFT release here with the APK attached:
+#        gh release create v0.1.0 <apk> --draft --title "ReceiptRelay v0.1.0" --notes-file notes.md -R Rushikesh-Nivalkar/receipt-relay-website
+#   3. Run this workflow by hand (Actions -> Release APK -> Run workflow) with the tag and the local SHA-256.
+#      It downloads the APK, computes SHA-256, checks it against the local hash, uploads SHA256SUMS.txt,
+#      adds the checksum to the release notes and (only if publish=true) publishes the draft.
+#
+# Gate: the job is skipped unless the repo variable RELEASES_ENABLED is set to "true"
+# (Settings -> Secrets and variables -> Actions -> Variables). It is a plain variable, not a secret.
+# Manual trigger only. No secrets added; uses the built-in GITHUB_TOKEN.
+name: Release APK (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag of an existing DRAFT release with the .apk attached (e.g. v0.1.0)"
+        required: true
+        type: string
+      expected_sha256:
+        description: "SHA-256 of the APK from the local build (Get-FileHash). Required to publish."
+        required: false
+        type: string
+      publish:
+        description: "Publish the draft (false = dry run: compute and report only)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-apk
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: vars.RELEASES_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      TAG: ${{ inputs.tag }}
+      EXPECTED: ${{ inputs.expected_sha256 }}
+      PUBLISH: ${{ inputs.publish }}
+    steps:
+      - name: Validate inputs
+        run: |
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]] || { echo "::error::tag must look like v1.2.3"; exit 1; }
+          if [ "$PUBLISH" = "true" ] && [ -z "$EXPECTED" ]; then
+            echo "::error::expected_sha256 is required when publish=true"; exit 1
+          fi
+
+      - name: Check release is a draft
+        run: |
+          draft=$(gh release view "$TAG" -R "$REPO" --json isDraft -q .isDraft)
+          [ "$draft" = "true" ] || { echo "::error::$TAG is not a draft release (already published?)"; exit 1; }
+
+      - name: Download APK asset
+        run: |
+          mkdir -p apk
+          gh release download "$TAG" -R "$REPO" -p '*.apk' -D apk --clobber
+          count=$(ls apk/*.apk 2>/dev/null | wc -l)
+          [ "$count" -eq 1 ] || { echo "::error::expected exactly 1 .apk asset, found $count"; exit 1; }
+
+      - name: Compute and verify SHA-256
+        run: |
+          cd apk
+          sha256sum *.apk > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+          actual=$(cut -d' ' -f1 SHA256SUMS.txt)
+          if [ -n "$EXPECTED" ]; then
+            exp=$(echo "$EXPECTED" | tr 'A-F' 'a-f' | tr -d '[:space:]')
+            [ "$actual" = "$exp" ] || { echo "::error::SHA-256 mismatch: release=$actual local=$exp"; exit 1; }
+            echo "SHA-256 matches local build."
+          fi
+          { echo "### $TAG SHA-256"; echo '```'; cat SHA256SUMS.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Add checksum to notes, upload SHA256SUMS.txt, publish
+        if: env.PUBLISH == 'true'
+        run: |
+          gh release view "$TAG" -R "$REPO" --json body -q .body > notes.md
+          if ! grep -q '^## SHA-256' notes.md; then
+            {
+              printf '\n\n## SHA-256\n\n```\n'
+              cat apk/SHA256SUMS.txt
+              printf '```\n\nCheck your download on Windows: `Get-FileHash <file>.apk -Algorithm SHA256`\n'
+              printf 'On macOS/Linux: `sha256sum <file>.apk`\n'
+            } >> notes.md
+          fi
+          gh release upload "$TAG" apk/SHA256SUMS.txt -R "$REPO" --clobber
+          gh release edit "$TAG" -R "$REPO" --notes-file notes.md --draft=false --latest
+          echo "Published $TAG" >> "$GITHUB_STEP_SUMMARY"

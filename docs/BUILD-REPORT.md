@@ -12,7 +12,7 @@
 
 - **Kind:** software (consumer fintech app). `data-type=software`, `site-kind=software`.
 - **Palette:** `blush-sage-slate` (user pick #20). Slate ground, ink, olive action, with the surface ground on #claims.
-- **Pairing:** `instrument` (Instrument Sans + DM Mono). Radius `round`. Buttons `pill`. Lit ground `sage`.
+- **Pairing:** dealt `instrument`, replaced 2026-11-23 by the system font stack (user decision). Radius `round`. Buttons `pill`. Lit ground `sage`.
 - **Hero:** `triptych`. Headline on the left, a UI collage (3 sets, crossfading every 2.8s) in the middle, the button on the right.
 - **Nav, close, footer:** `nav-mega` · `close-type` · `footer-statement` · rhythm `space`.
 - **Effect:** `fluted-glass` (dealt with `--slots band`) in the one `[data-visual]` frame (#rules), behind the lanes diagram.
@@ -57,3 +57,8 @@ Technical-dry: exact and plain. "You" is for what the shopper gets, and the prod
 - Replace the `.example` email.
 - Confirm ReceiptJar's in-app rules. The site currently says "rules shown in its app".
 - Run code-reviewer, compliance-reviewer (ads disclosure, privacy wording) and the qa-agent pass before any public deploy.
+
+## Change after the gate (2026-11-23)
+
+Fonts switched to the system stack (user decision): `--font-display` and `--font-text` are system sans, and `--font-mono` is system monospace. The Google Fonts link was removed. The page was re-checked after the change (see the result recorded below).
+GATE: PASS after the font change (2026-11-23, round 1 of a new build; same single waiver).

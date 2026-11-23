@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920">
+<title>ReceiptRelay partner deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../brand/tokens.css">
+<style>
+  /* Dealt tokens only (brand/tokens.css) + palette fields from BRAND-GUIDE.md */
+  :root { --sage: #b7c8be; --blush: #d6c4b8; --edge: 120px; }
+  @page { size: 1920px 1080px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--p-bg); color: var(--p-ink); font-family: var(--font-text); }
+  .slide {
+    width: 1920px; height: 1080px; position: relative; overflow: hidden;
+    padding: 110px var(--edge) 120px; display: flex; flex-direction: column;
+    page-break-after: always; break-after: page; background: var(--p-bg);
+  }
+  .slide--surface { background: var(--p-surface); }
+  .slide--sage { background: var(--sage); }
+  .slide--blush { background: var(--blush); }
+  .slide--olive { background: var(--p-inv-bg); color: var(--p-accent-ink); }
+  .kicker { font-family: var(--font-mono); font-size: 24px; color: var(--p-muted); letter-spacing: 0; margin-bottom: 28px; }
+  .slide--olive .kicker { color: var(--p-inv-muted); }
+  h1, h2 { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-stretch: var(--display-stretch); line-height: 1.04; }
+  h1 { font-size: 104px; letter-spacing: var(--display-tracking-xl); max-width: 1500px; }
+  h2 { font-size: 76px; max-width: 1500px; margin-bottom: 56px; }
+  .lede { font-size: 36px; line-height: 1.35; color: var(--p-muted); max-width: 1240px; margin-top: 36px; }
+  .slide--olive .lede { color: var(--p-inv-muted); }
+  ul.points { list-style: none; display: grid; gap: 30px; max-width: 1480px; }
+  ul.points li { font-size: 36px; line-height: 1.32; padding-left: 44px; position: relative; }
+  ul.points li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 14px; height: 14px; border-radius: 50%; background: var(--p-accent); }
+  .mono { font-family: var(--font-mono); font-weight: 500; }
+  .foot { position: absolute; left: var(--edge); right: var(--edge); bottom: 52px; display: flex; justify-content: space-between; align-items: center; font-size: 22px; color: var(--p-muted); }
+  .foot img { height: 34px; width: auto; }
+  .slide--olive .foot { color: var(--p-inv-muted); }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .card { background: rgba(255,255,255,0.28); border-radius: 28px; padding: 44px 44px 48px; }
+  .slide--surface .card { background: var(--p-bg); }
+  .card .n { font-family: var(--font-mono); font-size: 28px; color: var(--p-muted); }
+  .card h3 { font-size: 40px; font-weight: 500; margin: 18px 0 16px; letter-spacing: -0.01em; }
+  .card p { font-size: 29px; line-height: 1.38; color: var(--p-ink); }
+  .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 52px; }
+  .rule .big { font-family: var(--font-mono); font-size: 120px; font-weight: 500; line-height: 1; letter-spacing: -0.03em; }
+  .rule .big small { font-size: 40px; }
+  .rule .who { font-size: 34px; font-weight: 500; margin-top: 14px; }
+  .rule .cap { font-size: 26px; color: var(--p-muted); margin-top: 10px; line-height: 1.35; }
+  table { border-collapse: collapse; width: 100%; max-width: 1560px; font-size: 34px; }
+  th, td { text-align: left; padding: 26px 24px 26px 0; border-bottom: 2px solid rgba(28,28,28,0.16); vertical-align: top; }
+  th { font-weight: 500; width: 340px; }
+  .note { font-size: 28px; color: var(--p-muted); margin-top: 40px; max-width: 1480px; line-height: 1.4; }
+  .assume { display: inline-block; font-family: var(--font-mono); font-size: 22px; border: 2px solid var(--p-ink); border-radius: 999px; padding: 6px 18px; margin-bottom: 20px; }
+  ol.asks { list-style: none; counter-reset: a; display: grid; gap: 24px; max-width: 1560px; }
+  ol.asks li { counter-increment: a; font-size: 33px; line-height: 1.3; padding-left: 76px; position: relative; }
+  ol.asks li::before { content: counter(a, decimal-leading-zero); position: absolute; left: 0; top: 2px; font-family: var(--font-mono); font-size: 28px; color: var(--p-muted); }
+  ol.asks li.opt { color: var(--p-muted); }
+  .title-logo { width: 620px; height: auto; margin-bottom: 72px; }
+  .close-logo { position: absolute; right: var(--edge); bottom: 120px; width: 420px; height: auto; }
+  .pill { display: inline-block; background: var(--p-inv-action); color: var(--p-inv-action-ink); font-weight: 500; font-size: 32px; border-radius: 999px; padding: 22px 44px; margin-top: 56px; }
+</style>
+<style id="deck-font-override">:root { --font-display: Roboto, system-ui, sans-serif; --font-text: Roboto, system-ui, sans-serif; --font-mono: "Roboto Mono", ui-monospace, monospace; --display-stretch: 100%; }</style>
+</head>
+<body>
+
+<!-- 1 Title -->
+<section class="slide" style="justify-content:center">
+  <img class="title-logo" src="../../brand/logo-glass-lockup-transparent.svg" alt="ReceiptRelay">
+  <h1>Receipt rewards app for Australian shoppers</h1>
+  <p class="lede">One receipt, checked against Shping, ShopBack and ReceiptJar rules, then claimed in each provider's own app.</p>
+  <div class="foot"><span>Rushi Nivalkar, independent developer</span><span class="mono">Partner conversation · November 2026</span></div>
+</section>
+
+<!-- 2 Who we are -->
+<section class="slide slide--surface">
+  <p class="kicker">02 · Where ReceiptRelay is today</p>
+  <h2>An independent Android app, before launch</h2>
+  <ul class="points">
+    <li>Built for Australia, on Android.</li>
+    <li>Pre-launch: the app is in build. Testers come in through the Play internal testing track.</li>
+    <li>No users, revenue or partnerships yet, and no figures on these slides pretend otherwise.</li>
+    <li>Independent of Shping, ShopBack and ReceiptJar, with no affiliation or endorsement.</li>
+  </ul>
+  <div class="foot"><img src="../../brand/logo-primary.svg" alt="ReceiptRelay"><span class="mono">02</span></div>
+</section>
+
+<!-- 3 Problem -->
+<section class="slide">
+  <p class="kicker">03 · The shopper's problem</p>
+  <h2>Three receipt apps, three sets of rules</h2>
+  <div class="rules">
+    <div class="rule"><div class="big">7<small> days</small></div><div class="who">Shping</div><div class="cap">2 per store a day · 5 per store in 7 days · 100 a month</div></div>
+    <div class="rule"><div class="big">28<small> days</small></div><div class="who">ShopBack</div><div class="cap">One eligible receipt per purchase</div></div>
+    <div class="rule"><div class="big" style="font-family:var(--font-display);letter-spacing:var(--display-tracking-xl)">In&#8209;app</div><div class="who">ReceiptJar</div><div class="cap">Rules published inside its app; a weekly cap applies</div></div>
+  </div>
+  <p class="lede" style="margin-top:0">Shoppers who use more than one app miss deadlines, forget an app, or upload over a cap and get rejected. We found no Australian app that tracks the rules across them.</p>
+  <div class="foot"><span>As each provider publishes them. Please correct anything out of date.</span><span class="mono">03</span></div>
+</section>
+
+<!-- 4 Solution -->
+<section class="slide slide--sage">
+  <p class="kicker">04 · What ReceiptRelay does</p>
+  <h2>Captures once, checks the rules, tracks the claim</h2>
+  <div class="cols">
+    <div class="card"><div class="n">01</div><h3>Captures the receipt</h3><p>A photo, PDF or shared image, kept as the original file. The shopper picks the store and types the date and total.</p></div>
+    <div class="card"><div class="n">02</div><h3>Checks published rules</h3><p>Eligible, Not eligible with its reason, or Check manually when a rule is unknown. Fixed rules, no AI.</p></div>
+    <div class="card"><div class="n">03</div><h3>Hands off and tracks</h3><p>The shopper submits in your app. Reminders before deadlines; each claim tracked to Paid, Rejected or Expired.</p></div>
+  </div>
+  <div class="foot"><img src="../../brand/logo-primary.svg" alt="ReceiptRelay"><span class="mono">04</span></div>
+</section>
+
+<!-- 5 Hand-off -->
+<section class="slide">
+  <p class="kicker">05 · How the hand-off works</p>
+  <h2>The shopper submits in your app</h2>
+  <table>
+    <tr><th>ShopBack</th><td>Android share sheet into the ShopBack app</td></tr>
+    <tr><th>Shping</th><td>Saves the file, opens the Shping app, shows the steps</td></tr>
+    <tr><th>ReceiptJar</th><td>Saves the file, opens the ReceiptJar app, shows the steps</td></tr>
+  </table>
+  <p class="note">ReceiptRelay never asks for or stores provider passwords, never logs in for the shopper, and never automates or scrapes a provider app. We found no public partner API for any of the three.</p>
+  <div class="foot"><img src="../../brand/logo-primary.svg" alt="ReceiptRelay"><span class="mono">05</span></div>
+</section>
+
+<!-- 6 For your programme -->
+<section class="slide slide--surface">
+  <p class="kicker">06 · Designed for your programme</p>
+  <h2>Your rules checked before the upload</h2>
+  <ul class="points">
+    <li>Checks your published age limit and caps before the shopper uploads.</li>
+    <li>Sends each receipt to each provider once: a <span class="mono">SHA-256</span> fingerprint blocks the same file going to the same provider twice.</li>
+    <li>Passes on the original file, untouched.</li>
+    <li>Sends the shopper to your app, where your review and your rewards apply.</li>
+  </ul>
+  <div class="foot"><span>Design facts. Results come after the beta.</span><span class="mono">06</span></div>
+</section>
+
+<!-- 7 Data -->
+<section class="slide slide--blush">
+  <p class="kicker">07 · Data and privacy</p>
+  <h2>Receipts stay on the shopper's phone</h2>
+  <ul class="points">
+    <li>Encrypted at rest: SQLCipher database, <span class="mono">AES-256-GCM</span> files, keys in Android Keystore.</li>
+    <li>Receipts are never uploaded to our servers. The ad code never runs on a receipt screen.</li>
+    <li><span class="mono">TLS 1.3</span> with certificate pinning, and no plaintext logs.</li>
+    <li>Built towards ISO/IEC 27001:2022 and SOC 2 controls. Not certified: no audit has taken place.</li>
+  </ul>
+  <div class="foot"><img src="../../brand/logo-primary.svg" alt="ReceiptRelay"><span class="mono">07</span></div>
+</section>
+
+<!-- 8 Funding -->
+<section class="slide">
+  <p class="kicker">08 · How it is funded</p>
+  <h2>Free for shoppers, funded by one ad</h2>
+  <ul class="points" style="margin-bottom:48px">
+    <li>One native ad on the "Submitted" screen, plus an optional rewarded "support us" ad. No banners or interstitials.</li>
+    <li>Google UMP consent with a non-personalised option, and a "How we make money" screen in onboarding and settings.</li>
+  </ul>
+  <div><span class="assume">Planning assumption</span></div>
+  <p style="font-size:34px;line-height:1.4;max-width:1500px">About <span class="mono">24</span> native impressions per user a month at about <span class="mono">US$3</span> eCPM (a global vendor figure; Australian rates unknown) comes to about <span class="mono">US$0.07</span> per user a month.</p>
+  <div class="foot"><img src="../../brand/logo-primary.svg" alt="ReceiptRelay"><span class="mono">08</span></div>
+</section>
+
+<!-- 9 Advertisers -->
+<section class="slide slide--surface">
+  <p class="kicker">09 · For advertisers</p>
+  <h2>One ad slot, after a claim is done</h2>
+  <table>
+    <tr><th>Placement</th><td>The "Submitted" screen, just after a shopper finishes a claim</td></tr>
+    <tr><th>Audience</th><td>Australian Android shoppers who use receipt-rewards apps</td></tr>
+    <tr><th>Served by</th><td>AdMob at launch, consent through Google UMP</td></tr>
+    <tr><th>Targeting</th><td>Never on receipt data; the slot has no access to receipts</td></tr>
+  </table>
+  <p class="note">Direct sponsorship of the slot is an open question for after the beta.</p>
+  <div class="foot"><span>Shown to advertisers and networks only.</span><span class="mono">09</span></div>
+</section>
+
+<!-- 10 Ask -->
+<section class="slide">
+  <p class="kicker">10 · What we are asking for</p>
+  <h2>Five questions for your team</h2>
+  <ol class="asks">
+    <li>Written confirmation that a genuine receipt may go once to your programme, also when the shopper submits it to other programmes.</li>
+    <li>Your current rules (age, caps, formats, retailers) and a page or contact to watch for changes.</li>
+    <li>A supported entry point, if one exists: a deep link or intent to your receipt upload screen, a share target, or an API.</li>
+    <li>Guidance on your name and logo. Until then: your name in text only, with a "not affiliated" line.</li>
+    <li class="opt">Optional: whether a referral programme is open to us, disclosed on the "How we make money" screen.</li>
+  </ol>
+  <div class="foot"><img src="../../brand/logo-primary.svg" alt="ReceiptRelay"><span class="mono">10</span></div>
+</section>
+
+<!-- 11 Close -->
+<section class="slide slide--olive">
+  <p class="kicker">11 · Next step</p>
+  <h2>A 20-minute call, or a written reply</h2>
+  <p class="lede" style="margin-top:0;max-width:1080px">With whoever owns receipt policy. On request, a beta build or a screen walk-through once it exists. Every reply goes straight into the app's rule file.</p>
+  <span class="pill" style="align-self:flex-start">Reply to book a call</span>
+  <img class="close-logo" src="../../brand/logo-knockout.svg" alt="ReceiptRelay">
+  <div class="foot"><span>Rushi Nivalkar · ReceiptRelay</span><span class="mono">11</span></div>
+</section>
+
+</body>
+</html>

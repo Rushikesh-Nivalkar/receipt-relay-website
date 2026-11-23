@@ -1,0 +1,44 @@
+# CI for the ReceiptRelay website. Build + checks only.
+# NO deploy step on purpose (user decision 2026-11-23: website not released).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build src -> dist
+        run: node scripts/build.mjs
+
+      - name: No unreplaced %% tokens in dist
+        run: |
+          if grep -rInE '%%[A-Z_]+%%' dist; then
+            echo "::error::unreplaced %%TOKEN%% placeholders in dist (see lines above)"
+            exit 1
+          fi
+
+      - name: sitemap.xml and robots.txt exist
+        run: |
+          for f in dist/sitemap.xml dist/robots.txt; do
+            test -s "$f" || { echo "::error::$f missing or empty"; exit 1; }
+          done
+          grep -q '<urlset' dist/sitemap.xml || { echo "::error::sitemap.xml has no <urlset>"; exit 1; }
+          grep -q '^User-agent:' dist/robots.txt || { echo "::error::robots.txt has no User-agent line"; exit 1; }

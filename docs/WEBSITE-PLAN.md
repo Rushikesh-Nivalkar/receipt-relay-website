@@ -23,13 +23,13 @@ If any of the three bold skills is not read, the step has not started. The compl
 - **Plan line 1 — kind:** `software` (consumer fintech app). Meta: `data-type="software"`, `page-type=software`, `site-kind=software`.
 - **Plan line 2 — deal:**
   - **Palette:** `blush-sage-slate`. Its slate, sage and blush soft fields and one deep-olive close mirror the logo's frosted satellites around an olive core. The calm, unhurried grounds suit a money tool that needs to read as trustworthy rather than loud.
-  - **Pairing:** `instrument` (Instrument Sans + DM Mono). Radius: `round` (consumer app).
+  - **Pairing:** dealt `instrument`, replaced 2026-11-23 by the system font stack (user decision). Radius: `round` (consumer app).
   - **Hero:** `triptych` (dealt; `--has ui,photo`). Headline on the left, collage in the middle (sets crossfade every 2.8 s with a pause disc), one large button on the right line.
   - **Moments (2):** `word-highlight` (statement) and `line-carries-colour` (section transition).
   - **Nav:** `nav-mega` · **Footer:** `footer-statement` · **Close:** `close-type` · **Rhythm:** `space` · **Buttons:** `pill`.
   - **Effect (tech allows one):** none dealt yet. If wanted, deal it per `effects-usage.md`. Do not hand-pick a glass shader; the glass belongs to the logo.
 - **Tokens:** `brand/tokens.css`, the `:root` block exactly as printed.
-- **Head font link:** see `brand/tokens.css` source (Google Fonts: Instrument Sans wdth,wght 75..100,400..700 + DM Mono 400;500).
+- **Fonts (changed 2026-11-23):** system stack, no font link. See `brand/tokens.css`.
 
 ## 3. Logo use on the site
 
@@ -50,8 +50,8 @@ Each section's `--h` is 1 or 2. Ground order follows the palette note: soft fiel
 |---|---|---|---|---|---|---|
 | 1 | hero | slate `#A6B3BC` | Receipt rewards app for Australian shoppers: scan once, claim with each provider | Triptych collage: (a) phone with the scan screen and glass icon, (b) eligibility card with three provider rows, (c) a licensed photo of a hand holding a supermarket receipt (`photos.mjs`), (d) a claim tracker card (UI) | 1 | Hero entrance (`data-enter`); collage loop |
 | 2 | statement | sage `#B7C8BE` | "Scan once. See where it counts. Claim it yourself." | Type | 1 | **word-highlight** |
-| 3 | eligibility | slate | Deterministic rules: age, caps, retailers. Every "no" comes with its reason | `app-frame`: live HTML eligibility screen (Shping 7 days · ShopBack 28 days · ReceiptJar 14 days, DM Mono, a reason line on the failed one) + diagram card "one input → three lanes" (`diagrams.md` hub preset, mirrors the logo) | 2 | — |
-| 4 | tracking | blush `#D6C4B8` | Every claim tracked until it pays; reminders before deadlines | UI cards: status list (Submitted → Pending → Paid), a "days left" counter in DM Mono, card loop 2.5–4 s | 1 | **line-carries-colour** (enters the blush ground) |
+| 3 | eligibility | slate | Deterministic rules: age, caps, retailers. Every "no" comes with its reason | `app-frame`: live HTML eligibility screen (Shping 7 days · ShopBack 28 days · ReceiptJar 14 days, system monospace, a reason line on the failed one) + diagram card "one input → three lanes" (`diagrams.md` hub preset, mirrors the logo) | 2 | — |
+| 4 | tracking | blush `#D6C4B8` | Every claim tracked until it pays; reminders before deadlines | UI cards: status list (Submitted → Pending → Paid), a "days left" counter in the system monospace, card loop 2.5–4 s | 1 | **line-carries-colour** (enters the blush ground) |
 | 5 | money | sage | How ReceiptRelay makes money: one ad after you submit, an optional "support us" ad, never your receipts | Type + one still UI card showing the ad slot labelled "Ad" | 1 | — |
 | 6 | privacy | slate | Receipts stay on your phone, encrypted; no provider passwords, ever | A context photo (`photos.mjs`, a phone on a kitchen bench) + a short list | 1 | — |
 | 7 | close | olive `#2C3620` | Large type: "One receipt. Every claim." + pill "Download for Android" | Knockout mark | 1 | — |
@@ -118,3 +118,5 @@ Run every command from `projects/receipt-relay-website/`. `T = .claude/skills/de
 - **Photographs:** none. The only live-search candidate showed faces and readable third-party brands and was rejected. UI and the client's glass icon carry the page (allowed for software).
 - **Sections as built:** hero (triptych) → #app (app-frame) → #how (word-highlight) → #rules (split + fluted-glass + lanes diagram) → #claims (features 2x2, line-carries-colour) → #faq (money, privacy, credentials, stacking, iPhone) → footer.closing (close-type, footer-statement). The money and privacy content moved into the FAQ and into `privacy.html#ads`.
 - **Effect:** `fluted-glass`, dealt at the user's request ("get the animation in, can it later if not wanted"). To remove it, delete `data-fx="fluted-glass"` from the #rules frame.
+
+> **Font change, 2026-11-23 (user decision).** UI text uses the device's system font (SF Pro on iPhone and Mac, Roboto on Android, Segoe UI on Windows), and every number uses the system monospace font (SF Mono, Roboto Mono or the Android monospace, Consolas). Source: ui-ux-pro-max "System (SF Pro / Roboto)". SF Pro cannot be bundled or hosted (Apple licence: Apple platforms only), so nothing is shipped. The logo wordmark stays outlined Instrument Sans. This is the user's override of taste-skill's no-system-look rule, recorded in `.claude/rules/design-stack.md`.
